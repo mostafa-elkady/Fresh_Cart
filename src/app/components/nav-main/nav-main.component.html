@@ -1,0 +1,121 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-color">
+  <div class="container-lg-fluid container">
+    <a class="navbar-brand bg-light" routerLink="home"
+      ><img src="assets/images/freshcart-logo.svg" alt="logo"
+    /></a>
+    <button
+      class="navbar-toggler shadow-0"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars txt-color"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-auto">
+          <a
+            class="nav-link fw-bold txt-color active rounded"
+            aria-current="page"
+            routerLink="home"
+            routerLinkActive="bg-sec  txt-color rounded "
+            >Home</a
+          >
+        </li>
+        <li class="nav-item mx-auto">
+          <a
+            class="nav-link fw-bold txt-color active rounded"
+            aria-current="page"
+            routerLink="products"
+            routerLinkActive="bg-sec  txt-color rounded"
+          
+            >Products</a
+          >
+        </li>
+        <li class="nav-item mx-auto">
+          <a
+            class="nav-link fw-bold txt-color active rounded"
+            aria-current="page"
+            routerLink="categories"
+            routerLinkActive="bg-sec  txt-color rounded"
+            >Categories</a
+          >
+        </li>
+        <li class="nav-item mx-auto">
+          <a
+            class="nav-link fw-bold txt-color active rounded"
+            aria-current="page"
+            routerLink="brands"
+            routerLinkActive="bg-sec  txt-color rounded"
+            >Brands</a
+          >
+        </li>
+        <li class="nav-item mx-auto">
+          <a
+            class="nav-link fw-bold txt-color active rounded"
+            aria-current="page"
+            routerLink='cart'
+            routerLinkActive="bg-sec  txt-color rounded"
+            >Cart</a
+          >
+        </li>
+        <li class="nav-item mx-auto">
+          <a
+            class="nav-link fw-bold txt-color active rounded"
+            aria-current="page"
+            routerLink='wishlist'
+            routerLinkActive="bg-sec  txt-color rounded"
+            >WishList</a
+          >
+        </li>
+      </ul>
+      <ul
+        class="navbar-nav ms-auto mb-2 mx-auto mb-lg-0 social-icons gap-2 flex-row align-items-center justify-content-center "
+      >
+        <li  class="position-relative cursor-pointer " >
+          <i class="fa-solid fa-user  cursor-pointer txt-color"></i>
+          <span class="position-absolute username badge text-white bg-info">{{username}}</span>
+        </li>
+        <li><i class="cursor-pointer txt-color fa-brands fa-facebook"></i></li>
+        <li><i class="cursor-pointer txt-color fa-brands fa-twitter"></i></li>
+        <li>
+          <i class="cursor-pointer txt-color fa-brands fa-instagram"></i>
+        </li>
+        <li><i class="cursor-pointer txt-color fa-brands fa-tiktok"></i></li>
+        <li><i class="cursor-pointer txt-color fa-brands fa-youtube"></i></li>
+        <li>
+          <i class="cursor-pointer txt-color fa-brands fa-pinterest"></i>
+        </li>
+      </ul>
+      <ul class="navbar-nav me-2 mb-2 mb-lg-0 justify-content-center align-items-center">
+        <li class="nav-item me-2 rounded">
+          <a
+            class="nav-link fw-bold txt-color active rounded cursor-pointer"
+            aria-current="page"
+            routerLinkActive="bg-sec txt-color rounded"
+            (click)="logOut()"
+            >LogOut</a
+          >
+        </li>
+        <li>
+          <i
+          class="fa-solid fa-moon txt-color cursor-pointer fs-3 me-2"
+          (click)="toggleMode()"
+        ></i>
+        </li>
+        <li  routerLink='cart' class="position-relative cursor-pointer " role="a">
+          <i class="fa-solid fa-cart-shopping cursor-pointer fa-2x"></i>
+          <span class="position-absolute cart badge text-white bg-info">{{cartnum}}</span>
+        </li>
+        <li  routerLink='wishlist' class="position-relative cursor-pointer " role="a">
+          <i class="fa-solid fa-heart cursor-pointer fa-2x text-danger"></i>
+          <span class="position-absolute cart badge text-white bg-info">{{wishnum}}</span>
+        </li>
+      </ul>
+ 
+    </div>
+  </div>
+</nav>

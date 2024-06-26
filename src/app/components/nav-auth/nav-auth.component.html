@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-color">
+    <div class="container-lg-fluid container">
+      <a class="navbar-brand bg-light" routerLinkActive=" home"
+        ><img src="assets/images/freshcart-logo.svg" alt="logo"
+      /></a>
+      <button
+        class="navbar-toggler shadow-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa fa-bars txt-color"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul
+          class="navbar-nav ms-auto mb-2 me-2 mb-lg-0 social-icons gap-2 flex-row"
+          
+        >
+          <li><i class="cursor-pointer txt-color fa-brands fa-facebook"></i></li>
+          <li><i class="cursor-pointer txt-color fa-brands fa-twitter"></i></li>
+          <li>
+            <i class="cursor-pointer txt-color fa-brands fa-instagram"></i>
+          </li>
+          <li><i class="cursor-pointer txt-color fa-brands fa-tiktok"></i></li>
+          <li><i class="cursor-pointer txt-color fa-brands fa-youtube"></i></li>
+          <li>
+            <i class="cursor-pointer txt-color fa-brands fa-pinterest"></i>
+          </li>
+        </ul>
+        <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+          <li *ngIf="!isLogin" class="nav-item me-2 rounded">
+            <a
+              class="nav-link txt-color active rounded"
+              aria-current="page"
+              routerLink="/login"
+              routerLinkActive="bg-sec txt-color rounded"
+              >LogIn</a
+            >
+          </li>
+          <li *ngIf="!isLogin" class="nav-item me-2 rounded">
+            <a
+              class="nav-link txt-color active rounded"
+              aria-current="page"
+              routerLink="signup"
+              routerLinkActive="bg-sec txt-color rounded"
+              >SignUp</a
+            >
+          </li>
+        </ul>
+        <i class="fa-solid fa-moon txt-color cursor-pointer fs-3 me-2" (click)="toggleMode()"></i>
+      </div>
+    </div>
+  </nav>
+  

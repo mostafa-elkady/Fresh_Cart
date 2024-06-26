@@ -1,0 +1,12 @@
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+.fa-cart-shopping {
+    color: var(--main-color);
+}
+.navbar {
+    box-shadow: 0 0 14px 0.2px var(--main-color);
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--txt) !important;
+}

@@ -1,0 +1,11 @@
+.searchInput {
+    width: min(450px, 100%);
+}
+.loveIcon {
+    top: 1rem;
+    right: 1rem;
+  color: var(--main-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+}

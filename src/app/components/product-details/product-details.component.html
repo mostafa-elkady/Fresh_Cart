@@ -1,0 +1,35 @@
+<div class="container my-5" *ngIf="!isLoading">
+    <div class="row align-items-center">
+      <div class="col-md-4 mb-4">
+          <owl-carousel-o [options]="productSlider">
+              <ng-container *ngFor="let img of productDetails.images">
+                <ng-template carouselSlide>
+                  <img [src]="img" />
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+        <!-- <img
+          [src]="productDetails.imageCover"
+          alt="product-image"
+          class="w-100 "
+        /> -->
+      </div>
+      <div class="col-md-8">
+        <h4 class="txt-color">{{ productDetails.title }}</h4>
+        <p class=" txt-color">{{ productDetails.description }}</p>
+        <span class="text-main">{{ productDetails.category.name }}</span>
+        <div class="d-flex justify-content-between my-4">
+          <span class="fw-bold txt-color">{{ productDetails.price }} EGP</span>
+          <div>
+            <i class="fa fa-star rating-color"></i>
+            <span class="txt-color">{{ productDetails.ratingsAverage }}</span>
+          </div>
+        </div>
+        <button #btnadd class="btn bg-main text-white d-block w-100 mx-auto" (click)="addToCart(productDetails._id, btnadd)">
+          + add To Cart
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <app-loading *ngIf="isLoading"></app-loading> -->
+  

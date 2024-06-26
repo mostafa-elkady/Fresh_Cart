@@ -1,0 +1,124 @@
+<!--Start Main Slider -->
+<section>
+  <div class="row my-3">
+    <div class="col-md-9 p-0">
+      <owl-carousel-o [options]="mainSlider">
+        <ng-template carouselSlide>
+          <img
+            src="assets/images/slider-image-1.jpeg"
+            alt="slider-img"
+            class="w-100"
+            height="450px"
+          />
+        </ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="assets/images/slider-image-2.jpeg"
+            alt="slider-img"
+            class="w-100"
+            height="450px"
+        /></ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="assets/images/slider-image-3.jpeg"
+            alt="slider-img"
+            class="w-100"
+            height="450px"
+        /></ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-3 p-0">
+      <img
+        src="assets/images/fresh-fruit-berry-.jpg"
+        alt="slider-img"
+        class="w-100"
+        height="225px"
+      />
+      <img
+        src="assets/images/colorful-fruits.jpg"
+        alt="slider-img"
+        class="w-100"
+        height="225px"
+      />
+    </div>
+  </div>
+</section>
+<!--End Main Slider -->
+
+<!--Start category Slider -->
+<owl-carousel-o [options]="categorySlider">
+  <ng-container *ngFor="let slide of categories">
+    <ng-template carouselSlide>
+      <img
+        [src]="slide.image"
+        alt=""
+        style="
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          margin: 1rem auto;
+        "
+      />
+      <h5 class="text-center txt-color">{{ slide.name }}</h5>
+    </ng-template>
+  </ng-container>
+</owl-carousel-o>
+<!--End category Slider -->
+
+<!-- Start Products -->
+<section class="products">
+  <h2 class="text-center my-5 heading txt-color">Shop With Our Products</h2>
+  <input
+    type="text"
+    class="form-control mx-auto my-4 rounded txt-color bg-color searchInput"
+    placeholder="Search By Product Name"
+    [(ngModel)]="searchWord"
+  />
+  <div class="row g-2 my-5">
+    <div
+      class="col-xl-2 col-lg-3 col-md-4 col-sm-6 my-2"
+      *ngFor="
+        let product of allProducts | searchPipe : searchWord | slice : 0 : 18
+      "
+    >
+      <div class="product position-relative">
+        <a
+          [routerLink]="['/product-details', product._id]"
+          class="txt-color text-decoration-none"
+        >
+          <img [src]="product?.imageCover" alt="product-image" class="w-100" />
+          <div class="content p-2">
+            <p class="text-main fw-normnal  txt-color my-0">
+              {{ product.category.name }}
+            </p>
+            <h5 class="txt-color h6">
+              {{ product?.title?.split(" ")?.slice(0, 2)?.join(" ") }}
+            </h5>
+            <div class="d-flex justify-content-between txt-color font-sm">
+              <span>{{ product.price }} EGP</span>
+              <div>
+                <i class="fa fa-star txt-color" [class.rating-color] = "product.ratingsAverage >= num" *ngFor="let num of [1,2,3,4,5]"></i>
+                <span>{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <button
+          class="btn bg-main text-white"
+          (click)="addToCart(product._id, addBtn)"
+          #addBtn
+        >
+          + Add TO Cart
+        </button>
+        <i
+          role="a"
+          class="fa-solid fa-heart position-absolute loveIcon "
+          (click)="addToWishlist(product._id, addtowishlist)"
+         [ngClass]="{'text-danger': wishlistData.includes(product._id)}"
+          #addtowishlist
+        ></i>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Products -->

@@ -1,0 +1,5 @@
+https://documenter.getpostman.com/view/5709532/2s93JqTRWN
+
+
+// Categories
+https://ecommerce.routemisr.com/api/v1/categories

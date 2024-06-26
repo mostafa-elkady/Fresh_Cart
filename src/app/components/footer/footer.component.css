@@ -1,0 +1,5 @@
+.bordered-row {
+    padding-top: 1rem;
+    border-top: 1px solid var(--txt-grey);
+    border-bottom: 1px solid var(--txt-grey);
+    }

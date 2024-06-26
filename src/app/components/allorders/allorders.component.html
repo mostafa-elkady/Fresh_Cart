@@ -1,0 +1,27 @@
+<div class="py-5">
+    <div class="d-flex align-items-center justify-content-between">
+      <h2 class="mb-5 fw-bolder">ALL Orders:</h2>
+    </div>
+    <div class="row m-4 product p-2" *ngFor="let order of allorders">
+      <ng-container *ngFor="let item of order.cartItems">
+        <div class="col-sm-1">
+          <img class="w-100" [src]="item.product.imageCover" alt="" />
+        </div>
+        <div class="col-sm-11">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <h4 class="fw-bold">
+                {{ item.product.title.split(" ").slice(0, 2).join(" ") }}
+              </h4>
+              <p class="text-main fw-bold">{{ item.product.category.name }}</p>
+              <span class="text-muted fw-bold font-sm">{{
+                item.product.price | currency : "EGP"
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <hr />
+    </div>
+  </div>
+  

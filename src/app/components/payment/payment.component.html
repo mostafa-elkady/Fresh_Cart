@@ -1,0 +1,41 @@
+<form
+  class="mx-auto my-5 form-login bg-color txt shadow"
+  [formGroup]="paymentForm"
+  (ngSubmit)="handlePayment(paymentForm)"
+>
+  <h3 class="title">Check Out</h3>
+
+  <label for="details" class="fw-bold txt-color">details:</label>
+  <input
+    type="text"
+    id="details"
+    class="form-control my-2"
+    placeholder="details"
+    formControlName="details"
+  />
+
+  <label for="phone" class="fw-bold txt-color">phone:</label>
+  <input
+    type="tel"
+    id="phone"
+    class="form-control my-2"
+    placeholder="phone"
+    formControlName="phone"
+  />
+  <label for="city" class="fw-bold txt-color">city:</label>
+  <input
+    type="text"
+    id="city"
+    class="form-control my-2"
+    placeholder="city"
+    formControlName="city"
+  />
+  <button
+    type="submit"
+    class="btn bg-main text-white"
+    [disabled]="paymentForm.invalid"
+  >
+    <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    <span *ngIf="!isLoading">Login</span>
+  </button>
+</form>

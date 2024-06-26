@@ -1,0 +1,94 @@
+<section class="products">
+
+  <h2 class="text-center my-5 heading txt-color">Shop With Our Products</h2>
+  <input
+    type="text"
+    class="form-control mx-auto my-4 rounded txt-color bg-color searchInput"
+    placeholder="Search By Product Name"
+    [(ngModel)]="searchWord"
+  />
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center">
+      <pagination-controls  id="productPagination"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="9"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page">
+  </pagination-controls>
+    </div>
+    <!-- Pagination -->
+
+  <div class="row g-2 my-5">
+    <div
+      class="col-xl-2 col-lg-3 col-md-4 col-sm-6 my-2"
+      *ngFor="let product of allProducts  | paginate: { id: 'productPagination',
+      itemsPerPage: pageSize,
+      currentPage: currentPage,
+      totalItems: total } | searchPipe : searchWord"
+      role="button"
+    >
+      <div class="product position-relative">
+        <a
+          [routerLink]="['/product-details', product._id]"
+          class="txt-color text-decoration-none"
+        >
+          <img [src]="product?.imageCover" alt="product-image" class="w-100" />
+          <div class="content p-2">
+            <p class="text-main fw-normnal mt-3 txt-color my-0">
+              {{ product.category.name }}
+            </p>
+            <h5 class="txt-color h6">
+              {{ product?.title?.split(" ")?.slice(0, 2)?.join(" ") }}
+            </h5>
+            <div class="d-flex justify-content-between txt-color font-sm">
+              <span>{{ product.price }} EGP</span>
+              <div>
+                <i class="fa fa-star " [class.rating-color] = "product.ratingsAverage >= num" *ngFor="let num of [1,2,3,4,5]"></i>
+                <span>{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <button
+          class="btn bg-main text-white "
+          (click)="addToCart(product._id, addBtn)"
+          #addBtn
+        >
+          + Add TO Cart
+        </button>
+        <i
+          role="a"
+          class="fa-solid fa-heart position-absolute loveIcon "
+          (click)="addToWishlist(product._id, addtowishlist)"
+         [ngClass]="{'text-danger': wishlistData.includes(product._id)}"
+          #addtowishlist
+        ></i>
+      </div>
+    </div>
+  </div>
+  <!-- Pagination -->
+  <div class="d-flex justify-content-center">
+    <pagination-controls  id="productPagination"
+    (pageChange)="pageChanged($event)"
+    (pageBoundsCorrection)="pageChanged($event)"
+    [maxSize]="9"
+    [directionLinks]="true"
+    [autoHide]="true"
+    [responsive]="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+  </div>
+  <!-- Pagination -->
+</section>

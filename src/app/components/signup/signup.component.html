@@ -1,0 +1,172 @@
+
+<form
+  class="mx-auto my-5"
+  [formGroup]="registerForm"
+  (ngSubmit)="handleRegister(registerForm)"
+>
+  <h3 class="title">SignUp </h3>
+  <!-- Error -->
+  <div *ngIf="apiError" class="alert alert-danger">
+    <p class="m-0 p-0 text-danger">{{ apiError | json}}</p>
+  </div>
+  <!-- Error -->
+  <!-- Name -->
+  <label for="name" class="fw-bold txt-color">Name</label>
+  <input
+    type="text"
+    id="name"
+    class="form-control my-2"
+    placeholder="Name"
+    formControlName="name"
+    (input)="clearApiError()"
+    [ngClass]="{
+        'is-invalid': registerForm.get('name')?.invalid && registerForm.get('name')?.touched,
+        'is-valid': registerForm.get('name')?.valid && registerForm.get('name')?.touched
+      }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="
+      registerForm.get('name')?.errors && registerForm.get('name')?.touched
+    "
+  >
+    <p *ngIf="registerForm.get('name')?.getError('required')" class="m-0 text-danger">
+      Name is Required
+    </p>
+    <p *ngIf="registerForm.get('name')?.getError('maxlength')" class="m-0 text-danger">
+      Max Length is 10 Character
+    </p>
+    <p *ngIf="registerForm.get('name')?.getError('minlength')" class="m-0 text-danger">
+      Min Length is 3 Character
+    </p>
+  </div>
+  <!-- Email -->
+  <label for="email" class="fw-bold txt-color">Email</label>
+  <input
+    type="text"
+    id="email"
+    class="form-control my-2"
+    placeholder="Email"
+    formControlName="email"
+    (input)="clearApiError()"
+    [ngClass]="{
+        'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched,
+        'is-valid': registerForm.get('email')?.valid && registerForm.get('email')?.touched
+      }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="
+      registerForm.get('email')?.errors && registerForm.get('email')?.touched
+    "
+  >
+    <p *ngIf="registerForm.get('email')?.getError('required')" class="m-0 text-danger">
+      Email is required
+    </p>
+    <p *ngIf="registerForm.get('email')?.getError('email')" class="m-0 text-danger">
+      Email is inValid
+    </p>
+  </div>
+  <!-- Password -->
+  <label for="password" class="fw-bold txt-color">password</label>
+  <input
+    type="password"
+    id="password"
+    class="form-control my-2"
+    placeholder="password"
+    formControlName="password"
+    (input)="clearApiError()"
+        [ngClass]="{
+        'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched,
+        'is-valid': registerForm.get('password')?.valid && registerForm.get('password')?.touched
+      }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="
+      registerForm.get('password')?.errors &&
+      registerForm.get('password')?.touched
+    "
+  >
+    <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0 text-danger">
+      Password is required
+    </p>
+    <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0 text-danger">
+      must be <br>
+      * Start with a letter (either uppercase or lowercase). <br>
+      * Be between 6 and 15 characters in total. <br>
+      * Can only contain letters (A-Z or a-z) and numbers (0-9)
+    </p>
+  </div>
+  <!-- rePassword -->
+  <label for="rePassword" class="fw-bold txt-color">Confirm Password</label>
+  <input
+    type="password"
+    id="rePassword"
+    class="form-control my-2"
+    placeholder="Confirm Password"
+    formControlName="rePassword"
+    (input)="clearApiError()"
+        [ngClass]="{
+        'is-invalid': registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched,
+        'is-valid': registerForm.get('rePassword')?.valid && registerForm.get('rePassword')?.touched
+      }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="
+      registerForm.get('rePassword')?.errors &&
+      registerForm.get('rePassword')?.touched
+    "
+  >
+    <p *ngIf="registerForm.get('rePassword')?.getError('required')" class="m-0 text-danger">
+      rePassword is required
+    </p>
+    <p *ngIf="registerForm.get('rePassword')?.getError('pattern')" class="m-0 text-danger">
+        must be <br>
+        * Start with a letter (either uppercase or lowercase). <br>
+        * Be between 6 and 9 characters in total. <br>
+        * Can only contain letters (A-Z or a-z) and numbers (0-9)
+    </p>
+  </div>
+  <!-- phone -->
+  <label for="phone" class="fw-bold txt-color">phone</label>
+  <input
+    type="tel"
+    id="phone"
+    class="form-control my-2"
+    placeholder="phone"
+    formControlName="phone"
+    (input)="clearApiError()"
+    [ngClass]="{
+        'is-invalid': registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched,
+        'is-valid': registerForm.get('phone')?.valid && registerForm.get('phone')?.touched
+      }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="
+      registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+    "
+  >
+    <p *ngIf="registerForm.get('phone')?.getError('required')" class="m-0 text-danger">
+      phone is required
+    </p>
+    <p *ngIf="registerForm.get('phone')?.getError('pattern')" class="m-0 text-danger">
+      phone is Invalid
+    </p>
+  </div>
+  <div class="d-flex justify-content-center align-items-center pt-2 flex-column">
+    <p class="signup fs-6 txt-grey">Do You have an account?
+      <a routerLink="/login" class="text-main">Login</a>
+    </p>
+  <button
+    type="submit"
+    class="btn bg-main text-white   "
+    [disabled]="registerForm.invalid"
+  >
+    <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+    <span *ngIf="!isLoading">SignUp</span>
+  </button>
+  </div>
+</form>

@@ -1,0 +1,101 @@
+<form
+  class="mx-auto my-5 form-login bg-color txt"
+  [formGroup]="loginForm"
+  (ngSubmit)="handleLogin(loginForm)"
+>
+  <h3 class="title">Login</h3>
+  <div *ngIf="apiError" class="alert alert-danger">
+    <p class="m-0 p-0 text-danger">{{ apiError }}</p>
+  </div>
+  <!-- Email -->
+  <label for="email" class="fw-bold txt-color">Email:</label>
+  <input
+    type="text"
+    id="email"
+    class="form-control my-2"
+    placeholder="Email"
+    formControlName="email"
+    (input)="clearApiError()"
+    [ngClass]="{
+      'is-invalid':
+        loginForm.get('email')?.invalid && loginForm.get('email')?.touched,
+      'is-valid':
+        loginForm.get('email')?.valid && loginForm.get('email')?.touched
+    }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched"
+  >
+    <p
+      *ngIf="loginForm.get('email')?.getError('required')"
+      class="m-0 text-danger"
+    >
+      Email is required
+    </p>
+    <p
+      *ngIf="loginForm.get('email')?.getError('email')"
+      class="m-0 text-danger"
+    >
+      Email is inValid
+    </p>
+  </div>
+  <!-- Password -->
+  <label for="password" class="fw-bold txt-color">password:</label>
+  <input
+    type="password"
+    id="password"
+    class="form-control my-2"
+    placeholder="password"
+    formControlName="password"
+    (input)="clearApiError()"
+    [ngClass]="{
+      'is-invalid':
+        loginForm.get('password')?.invalid &&
+        loginForm.get('password')?.touched,
+      'is-valid':
+        loginForm.get('password')?.valid && loginForm.get('password')?.touched
+    }"
+  />
+  <div
+    class="alert alert-danger p-1"
+    *ngIf="
+      loginForm.get('password')?.errors && loginForm.get('password')?.touched
+    "
+  >
+    <p
+      *ngIf="loginForm.get('password')?.getError('required')"
+      class="m-0 text-danger"
+    >
+      Password is required
+    </p>
+    <p
+      *ngIf="loginForm.get('password')?.getError('pattern')"
+      class="m-0 text-danger"
+    >
+      must be <br />
+      * Be between 6 and 15 characters in total. <br />
+      * Can only contain letters (A-Z or a-z) and numbers (0-9)
+    </p>
+  </div>
+  <div
+    class="d-flex justify-content-center align-items-center pt-2 flex-column"
+  >
+    <a routerLink="/forgotPassword" routerLinkActive="text-decoration-underline" class="text-main my-3 fs-6 text-decoration-underline"
+      >Forgot Your Password?</a
+    >
+
+    <p class="signup fs-6 txt-grey">
+      Don't have an account?
+      <a routerLink="/signup"  class="text-main">Sign up</a>
+    </p>
+    <button
+      type="submit"
+      class="btn bg-main text-white"
+      [disabled]="loginForm.invalid"
+    >
+      <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading">Login</span>
+    </button>
+  </div>
+</form>
